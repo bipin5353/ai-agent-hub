@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Agent Hub - Free Curated Directory</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     <style>
         :root {
             --bg: #0a0a0f;
@@ -358,6 +359,15 @@
         
         .hidden { display: none !important; }
     </style>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKBF9RKTBP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QKBF9RKTBP');
+    </script>
 </head>
 <body>
 
@@ -378,6 +388,11 @@
         
         <div class="search-box">
             <input type="text" class="search-input" id="searchInput" placeholder="Search agents by name or feature...">
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                <span>+</span> Suggest a new agent
+            </a>
         </div>
 
         <div class="stats">
@@ -438,7 +453,7 @@
             
             <div class="deploy-card">
                 <h3>🤗 Hugging Face</h3>
-                <p>Host ML demos and Spaces. Free CPU tier + ZeroGPU for dynamic GPU access. No card needed. [^2^]</p>
+                <p>Host ML demos and Spaces. Free CPU tier + ZeroGPU for dynamic GPU access. No card needed.</p>
                 <a href="https://huggingface.co/spaces" target="_blank" class="btn btn-primary">Create Space →</a>
             </div>
         </div>
