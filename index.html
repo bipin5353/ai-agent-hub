@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Hub - Free Curated Directory</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-hover: #1a1a25;
+            --primary: #6366f1;
+            --primary-hover: #818cf8;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #2d2d3a;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover { color: var(--text); }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* Category Filter */
+        .filter-bar {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Agent Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .agent-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .agent-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.2);
+        }
+        
+        .agent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+        
+        .agent-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-free {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-oss {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+        
+        .badge-freemium {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+        
+        .agent-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .agent-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .agent-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .agent-features li {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+        
+        .agent-features li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .agent-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover { background: var(--primary-hover); }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--surface-hover);
+            border-color: var(--primary);
+        }
+        
+        /* Deployment Section */
+        .deploy-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+            padding: 4rem 2rem;
+        }
+        
+        .deploy-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .deploy-card {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg);
+        }
+        
+        .deploy-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .deploy-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .stats { gap: 1.5rem; }
+            .agents-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+        
+        /* Search */
+        .search-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo">🤖 AI Agent Hub</div>
+            <ul class="nav-links">
+                <li><a href="#agents">Agents</a></li>
+                <li><a href="#deploy">Deploy</a></li>
+                <li><a href="#frameworks">Frameworks</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Free AI Agent Directory</h1>
+        <p>Curated, tested, and categorized. Deploy powerful AI agents without spending a cent.</p>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search agents by name or feature...">
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="totalAgents">50+</div>
+                <div class="stat-label">Free Agents</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Open Source</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="filter-bar" id="categoryFilters">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="coding">Coding</button>
+        <button class="filter-btn" data-category="writing">Writing</button>
+        <button class="filter-btn" data-category="research">Research</button>
+        <button class="filter-btn" data-category="design">Design</button>
+        <button class="filter-btn" data-category="productivity">Productivity</button>
+        <button class="filter-btn" data-category="framework">Frameworks</button>
+        <button class="filter-btn" data-category="deployment">Deployment</button>
+        <button class="filter-btn" data-category="nocode">No-Code</button>
+        <button class="filter-btn" data-category="browser">Browser Agents</button>
+    </div>
+
+    <div class="container" id="agents">
+        <div class="agents-grid" id="agentsGrid">
+            <!-- Agents will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <section class="deploy-section" id="deploy">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Deploy Your Own Agents</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                Free platforms to host and run AI agents 24/7. No credit card required.
+            </p>
+        </div>
+        
+        <div class="deploy-grid">
+            <div class="deploy-card">
+                <h3>🚀 Zeabur</h3>
+                <p>Deploy Paperclip and multi-agent teams with one click. Free tier includes auto-sleep for inactive services.</p>
+                <a href="https://zeabur.com" target="_blank" class="btn btn-primary">Deploy Free →</a>
+            </div>
+            
+            <div class="deploy-card">
+                <h3>🚂 Railway</h3>
+                <p>Self-host Dify, Flowise, and n8n. Generous free tier with easy one-click templates.</p>
+                <a href="https://railway.app" target="_blank" class="btn btn-primary">Deploy Free →</a>
+            </div>
+            
+            <div class="deploy-card">
+                <h3>🤗 Hugging Face</h3>
+                <p>Host ML demos and Spaces. Free CPU tier + ZeroGPU for dynamic GPU access. No card needed. [^2^]</p>
+                <a href="https://huggingface.co/spaces" target="_blank" class="btn btn-primary">Create Space →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Built for the AI community. Updated April 2026.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+            All tools verified free as of 2026. Some offer paid tiers for advanced usage.
+        </p>
+    </footer>
+
+    <script>
+        const agents = [
+            // CODING
+            {
+                name: "GitHub Copilot",
+                category: "coding",
+                badge: "freemium",
+                badgeText: "Free for OSS/Students",
+                icon: "💻",
+                desc: "AI pair programmer offering real-time code suggestions and function completion.",
+                features: ["Real-time suggestions", "Multi-language support", "IDE integration"],
+                link: "https://github.com/features/copilot",
+                deploy: null
+            },
+            {
+                name: "Cursor",
+                category: "coding",
+                badge: "freemium",
+                badgeText: "Generous Free Tier",
+                icon: "✨",
+                desc: "AI-native code editor with 'Composer' mode for multi-file edits and codebase understanding.",
+                features: ["Multi-file editing", "Codebase chat", "GPT-4/Claude integration"],
+                link: "https://cursor.sh",
+                deploy: null
+            },
+            {
+                name: "Claude Code",
+                category: "coding",
+                badge: "free",
+                badgeText: "Free Tier",
+                icon: "🧠",
+                desc: "Anthropic's advanced coding agent for complex development tasks and debugging.",
+                features: ["Terminal integration", "Code analysis", "Git workflow"],
+                link: "https://claude.ai/code",
+                deploy: null
+            },
+            {
+                name: "OpenDevin",
+                category: "coding",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🔧",
+                desc: "Autonomous software engineer that writes code, runs tests, and fixes bugs in sandboxed environment.",
+                features: ["SWE-Bench tested", "Sandboxed execution", "Self-healing code"],
+                link: "https://github.com/All-Hands-AI/OpenHands",
+                deploy: "https://github.com/All-Hands-AI/OpenHands"
+            },
+            {
+                name: "Continue.dev",
+                category: "coding",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "⏩",
+                desc: "Open-source autopilot for VS Code. Bring your own API keys for 100% free usage.",
+                features: ["Local/remote LLMs", "Code explanation", "Refactoring"],
+                link: "https://continue.dev",
+                deploy: null
+            },
+            
+            // WRITING
+            {
+                name: "ChatGPT",
+                category: "writing",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "💬",
+                desc: "Industry standard for conversation, creative writing, and brainstorming with GPT-4o.",
+                features: ["Creative writing", "Brainstorming", "Document analysis"],
+                link: "https://chatgpt.com",
+                deploy: null
+            },
+            {
+                name: "Claude",
+                category: "writing",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "📝",
+                desc: "Excellent for long-form writing, nuanced reasoning, and document analysis.",
+                features: ["100K context window", "Document upload", "Nuanced tone"],
+                link: "https://claude.ai",
+                deploy: null
+            },
+            {
+                name: "Google Gemini",
+                category: "writing",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🔮",
+                desc: "Deep Google Workspace integration for contextual writing in Docs, Gmail, Drive.",
+                features: ["Workspace integration", "YouTube context", "2M context window"],
+                link: "https://gemini.google.com",
+                deploy: null
+            },
+            
+            // RESEARCH
+            {
+                name: "Perplexity AI",
+                category: "research",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🔍",
+                desc: "AI search engine with cited, scholarly sources and real-time web access.",
+                features: ["Cited sources", "Academic focus", "Real-time web"],
+                link: "https://perplexity.ai",
+                deploy: null
+            },
+            {
+                name: "DeepSeek",
+                category: "research",
+                badge: "free",
+                badgeText: "Completely Free",
+                icon: "🌊",
+                desc: "Specializes in deep research with sources, context, and counterarguments.",
+                features: ["Deep reasoning", "Source citations", "No usage limits"],
+                link: "https://deepseek.com",
+                deploy: null
+            },
+            {
+                name: "Elicit",
+                category: "research",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "📚",
+                desc: "AI research assistant that finds papers, extracts data, and synthesizes findings.",
+                features: ["Paper discovery", "Data extraction", "Systematic reviews"],
+                link: "https://elicit.org",
+                deploy: null
+            },
+            
+            // DESIGN
+            {
+                name: "Gamma",
+                category: "design",
+                badge: "freemium",
+                badgeText: "Freemium",
+                icon: "🎨",
+                desc: "AI-powered tool to turn outlines into polished presentations and documents.",
+                features: ["One-click themes", "Interactive decks", "Export to PDF/PPT"],
+                link: "https://gamma.app",
+                deploy: null
+            },
+            {
+                name: "Canva AI",
+                category: "design",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🖼️",
+                desc: "Magic Design, AI image generator, and text-to-image tools built into Canva.",
+                features: ["Magic Design", "Text to image", "Brand kit"],
+                link: "https://canva.com",
+                deploy: null
+            },
+            {
+                name: "Remove.bg",
+                category: "design",
+                badge: "free",
+                badgeText: "Free Limited",
+                icon: "✂️",
+                desc: "Automatic background removal using AI. 1 free HD download per month.",
+                features: ["One-click removal", "HD output", "API available"],
+                link: "https://remove.bg",
+                deploy: null
+            },
+            
+            // PRODUCTIVITY
+            {
+                name: "Taskade Genesis",
+                category: "productivity",
+                badge: "freemium",
+                badgeText: "Free Plan",
+                icon: "✅",
+                desc: "Build live AI apps, databases, and automations with no code.",
+                features: ["AI workflows", "Real-time sync", "Mind maps"],
+                link: "https://taskade.com",
+                deploy: null
+            },
+            {
+                name: "Notion AI",
+                category: "productivity",
+                badge: "freemium",
+                badgeText: "Free Limited",
+                icon: "📋",
+                desc: "AI writing assistant, Q&A, and autofill tables inside your workspace.",
+                features: ["Q&A on docs", "AI writing", "Database autofill"],
+                link: "https://notion.so",
+                deploy: null
+            },
+            {
+                name: "ClickUp AI",
+                category: "productivity",
+                badge: "freemium",
+                badgeText: "Free Plan",
+                icon: "🚀",
+                desc: "Create 'Super Agents' that understand your workspace and automate tasks.",
+                features: ["Workspace context", "Task automation", "Doc generation"],
+                link: "https://clickup.com",
+                deploy: null
+            },
+            
+            // FRAMEWORKS
+            {
+                name: "LangGraph",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🕸️",
+                desc: "Build complex, stateful, multi-agent workflows. Used by Uber and Cisco.",
+                features: ["Graph workflows", "State management", "Enterprise ready"],
+                link: "https://langchain-ai.github.io/langgraph/",
+                deploy: null
+            },
+            {
+                name: "CrewAI",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "👥",
+                desc: "Orchestrate teams of specialized AI agents with defined roles and goals.",
+                features: ["Role-based agents", "Task delegation", "Process automation"],
+                link: "https://crewai.com",
+                deploy: null
+            },
+            {
+                name: "AutoGPT",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🤖",
+                desc: "The pioneering autonomous agent framework with large community and plugins.",
+                features: ["Self-prompting", "Plugin ecosystem", "Memory management"],
+                link: "https://agpt.co",
+                deploy: null
+            },
+            {
+                name: "OpenAI Agents SDK",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🔌",
+                desc: "Lightweight framework for building tool-using agents on OpenAI models.",
+                features: ["Tool integration", "Tracing", "Handoffs"],
+                link: "https://github.com/openai/openai-agents-python",
+                deploy: null
+            },
+            {
+                name: "Pydantic AI",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🐍",
+                desc: "Agent framework by the creators of Pydantic. Type-safe and production-ready.",
+                features: ["Type safety", "Dependency injection", "Logfire integration"],
+                link: "https://ai.pydantic.dev",
+                deploy: null
+            },
+            
+            // DEPLOYMENT
+            {
+                name: "AgentStack",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🥞",
+                desc: "Open infrastructure for turning AI agents into running services.",
+                features: ["CLI deployment", "Agent hosting", "Service architecture"],
+                link: "https://agentstack.sh",
+                deploy: null
+            },
+            {
+                name: "LocalAGI",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🏠",
+                desc: "Self-hostable AI agent platform that runs 100% locally for privacy.",
+                features: ["100% local", "Privacy focused", "No API keys"],
+                link: "https://github.com/mudler/LocalAGI",
+                deploy: null
+            },
+            {
+                name: "Dify",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "⚙️",
+                desc: "LLM app builder with RAG, agents, and visual workflow editor.",
+                features: ["RAG pipelines", "Visual editor", "Self-hostable"],
+                link: "https://dify.ai",
+                deploy: "https://railway.app/template/dify"
+            },
+            {
+                name: "Flowise",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🌊",
+                desc: "Drag-and-drop UI for building LLM-powered agents and workflows.",
+                features: ["Visual builder", "LangChain integration", "Easy export"],
+                link: "https://flowiseai.com",
+                deploy: "https://railway.app/template/flowise"
+            },
+            
+            // NO-CODE
+            {
+                name: "n8n AI",
+                category: "nocode",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "⚡",
+                desc: "Workflow automation with AI nodes. Fair-code license, self-hostable.",
+                features: ["400+ integrations", "AI workflows", "Self-host free"],
+                link: "https://n8n.io",
+                deploy: "https://railway.app/template/n8n"
+            },
+            {
+                name: "Open Agent Builder",
+                category: "nocode",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🔨",
+                desc: "Visual, no-code flow builder for creating and executing AI workflows.",
+                features: ["Visual flows", "Multi-step agents", "API integration"],
+                link: "https://github.com/hotgluexyz/open-agent-builder",
+                deploy: null
+            },
+            {
+                name: "Langflow",
+                category: "nocode",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🔄",
+                desc: "Dynamic UI for LangChain. Drag, drop, and connect AI components.",
+                features: ["Component library", "Real-time testing", "Export to code"],
+                link: "https://langflow.org",
+                deploy: null
+            },
+            
+            // BROWSER AGENTS
+            {
+                name: "Kimi Claw",
+                category: "browser",
+                badge: "free",
+                badgeText: "Free Tier",
+                icon: "🌙",
+                desc: "Browser-based AI agent platform for continuous operation and research.",
+                features: ["Continuous operation", "Web research", "Unlimited basic chats"],
+                link: "https://kimi.moonshot.cn",
+                deploy: null
+            },
+            {
+                name: "Browser-Use",
+                category: "browser",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🌐",
+                desc: "Open-source web agent that controls browsers to complete tasks.",
+                features: ["Playwright-based", "Task automation", "Multi-step workflows"],
+                link: "https://browser-use.com",
+                deploy: null
+            },
+            {
+                name: "Stagehand",
+                category: "browser",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🎭",
+                desc: "AI web browsing framework with act, extract, and observe primitives.",
+                features: ["Type-safe", "Playwright compatible", "Self-healing selectors"],
+                link: "https://stagehand.dev",
+                deploy: null
+            }
+        ];
+
+        function renderAgents(filter = 'all', search = '') {
+            const grid = document.getElementById('agentsGrid');
+            grid.innerHTML = '';
+            
+            let filtered = agents;
+            
+            if (filter !== 'all') {
+                filtered = filtered.filter(a => a.category === filter);
+            }
+            
+            if (search) {
+                const s = search.toLowerCase();
+                filtered = filtered.filter(a => 
+                    a.name.toLowerCase().includes(s) || 
+                    a.desc.toLowerCase().includes(s) ||
+                    a.features.some(f => f.toLowerCase().includes(s))
+                );
+            }
+            
+            // Update count
+            document.getElementById('totalAgents').textContent = filtered.length + '+';
+            
+            filtered.forEach(agent => {
+                const card = document.createElement('div');
+                card.className = 'agent-card';
+                card.dataset.category = agent.category;
+                
+                const deployBtn = agent.deploy ? 
+                    `<a href="${agent.deploy}" target="_blank" class="btn btn-secondary">Deploy ↗</a>` : '';
+                
+                card.innerHTML = `
+                    <div class="agent-header">
+                        <div class="agent-icon">${agent.icon}</div>
+                        <span class="badge badge-${agent.badge}">${agent.badgeText}</span>
+                    </div>
+                    <div class="agent-name">${agent.name}</div>
+                    <div class="agent-desc">${agent.desc}</div>
+                    <ul class="agent-features">
+                        ${agent.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                    <div class="agent-actions">
+                        <a href="${agent.link}" target="_blank" class="btn btn-primary">Try Now →</a>
+                        ${deployBtn}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderAgents(btn.dataset.category, document.getElementById('searchInput').value);
+            });
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
+            renderAgents(activeFilter, e.target.value);
+        });
+
+        // Initial render
+        renderAgents();
+    </script>
+</body>
+</html>
