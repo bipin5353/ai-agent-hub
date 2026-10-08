@@ -368,6 +368,7 @@
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX');
     </script>
+<base target="_blank">
 </head>
 <body>
 
@@ -401,12 +402,12 @@
                 <div class="stat-label">Free Agents</div>
             </div>
             <div class="stat">
-                <div class="stat-number">20+</div>
+                <div class="stat-number">12+</div>
                 <div class="stat-label">Categories</div>
             </div>
             <div class="stat">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">Open Source</div>
+                <div class="stat-label">Free to Start</div>
             </div>
         </div>
     </section>
@@ -422,6 +423,9 @@
         <button class="filter-btn" data-category="deployment">Deployment</button>
         <button class="filter-btn" data-category="nocode">No-Code</button>
         <button class="filter-btn" data-category="browser">Browser Agents</button>
+        <button class="filter-btn" data-category="video">Video</button>
+        <button class="filter-btn" data-category="voice">Voice & Audio</button>
+        <button class="filter-btn" data-category="data">Data</button>
     </div>
 
     <div class="container" id="agents">
@@ -864,6 +868,469 @@
                 desc: "AI web browsing framework with act, extract, and observe primitives.",
                 features: ["Type-safe", "Playwright compatible", "Self-healing selectors"],
                 link: "https://stagehand.dev",
+                deploy: null
+            }
+            // CODING (additional)
+            {
+                name: "Windsurf",
+                category: "coding",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🌊",
+                desc: "Agentic IDE with the Cascade agent that plans and executes multi-file changes autonomously.",
+                features: ["Cascade agent", "Multi-file edits", "Free tier available"],
+                link: "https://windsurf.com",
+                deploy: null
+            },
+            {
+                name: "Aider",
+                category: "coding",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🤝",
+                desc: "Terminal-based AI pair programmer. Bring your own API key, 100% free with local models.",
+                features: ["Git-aware edits", "Any LLM", "Voice coding"],
+                link: "https://aider.chat",
+                deploy: null
+            },
+            {
+                name: "Cline",
+                category: "coding",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🛠️",
+                desc: "Autonomous coding agent in VS Code that edits files, runs commands, and uses a browser.",
+                features: ["Plan/act modes", "Checkpointing", "Bring your own key"],
+                link: "https://cline.bot",
+                deploy: null
+            },
+            {
+                name: "Bolt.new",
+                category: "coding",
+                badge: "freemium",
+                badgeText: "Free Tokens",
+                icon: "⚡",
+                desc: "Prompt-to-full-stack web app in the browser. Build, run, and deploy with AI.",
+                features: ["In-browser runtime", "One-click deploy", "Multi-file projects"],
+                link: "https://bolt.new",
+                deploy: null
+            },
+            {
+                name: "v0",
+                category: "coding",
+                badge: "freemium",
+                badgeText: "Free Credits",
+                icon: "0️⃣",
+                desc: "Vercel's generative UI tool. Turn prompts and screenshots into production React code.",
+                features: ["React/Next.js output", "Screenshot-to-code", "Deploy to Vercel"],
+                link: "https://v0.dev",
+                deploy: null
+            },
+            {
+                name: "Replit Agent",
+                category: "coding",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🌀",
+                desc: "Describe an app and the agent builds, runs, and hosts it end-to-end in the cloud.",
+                features: ["End-to-end builds", "Instant hosting", "In-browser IDE"],
+                link: "https://replit.com",
+                deploy: null
+            },
+
+            // WRITING (additional)
+            {
+                name: "Grammarly",
+                category: "writing",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "✔️",
+                desc: "AI writing assistant for grammar, tone, and clarity across browsers and apps.",
+                features: ["Tone detection", "Browser extension", "Plagiarism check (Pro)"],
+                link: "https://grammarly.com",
+                deploy: null
+            },
+            {
+                name: "DeepL Write",
+                category: "writing",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🌍",
+                desc: "AI writing and translation tool with nuanced phrasing suggestions in 30+ languages.",
+                features: ["Paraphrasing", "30+ languages", "Tone suggestions"],
+                link: "https://deepl.com/write",
+                deploy: null
+            },
+            {
+                name: "Jasper",
+                category: "writing",
+                badge: "freemium",
+                badgeText: "Free Trial",
+                icon: "🧩",
+                desc: "Marketing-focused AI writer with brand voice memory and campaign templates.",
+                features: ["Brand voice", "50+ templates", "SEO mode"],
+                link: "https://jasper.ai",
+                deploy: null
+            },
+
+            // RESEARCH (additional)
+            {
+                name: "NotebookLM",
+                category: "research",
+                badge: "free",
+                badgeText: "Free",
+                icon: "📓",
+                desc: "Google's research notebook that grounds answers in your sources with citations.",
+                features: ["Source grounding", "Audio overviews", "Citation traceability"],
+                link: "https://notebooklm.google.com",
+                deploy: null
+            },
+            {
+                name: "Consensus",
+                category: "research",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🧪",
+                desc: "AI-powered academic search that shows what the scientific consensus says on any claim.",
+                features: ["200M+ papers", "Consensus meters", "Study snapshots"],
+                link: "https://consensus.app",
+                deploy: null
+            },
+            {
+                name: "SciSpace",
+                category: "research",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🔬",
+                desc: "Understand research papers with AI copilot, explanations, and literature review tools.",
+                features: ["Paper copilot", "PDF chat", "Citation generator"],
+                link: "https://scispace.com",
+                deploy: null
+            },
+
+            // DESIGN (additional)
+            {
+                name: "Figma AI",
+                category: "design",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🖌️",
+                desc: "AI features inside Figma: first drafts, layer renaming, visual search, and prototyping.",
+                features: ["First draft", "Visual search", "Auto rename layers"],
+                link: "https://figma.com",
+                deploy: null
+            },
+            {
+                name: "Recraft",
+                category: "design",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🎯",
+                desc: "Generate and edit vector art, icons, and brand-consistent illustrations.",
+                features: ["Vector generation", "Brand styles", "AI editing"],
+                link: "https://recraft.ai",
+                deploy: null
+            },
+            {
+                name: "Ideogram",
+                category: "design",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🔤",
+                desc: "Image generation best known for rendering legible text inside images and logos.",
+                features: ["Text-in-image", "Logo design", "Style presets"],
+                link: "https://ideogram.ai",
+                deploy: null
+            },
+
+            // PRODUCTIVITY (additional)
+            {
+                name: "Otter.ai",
+                category: "productivity",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🦦",
+                desc: "AI meeting assistant that records, transcribes, and summarizes conversations live.",
+                features: ["Live transcription", "Meeting summaries", "Action items"],
+                link: "https://otter.ai",
+                deploy: null
+            },
+            {
+                name: "Fireflies.ai",
+                category: "productivity",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🔥",
+                desc: "Records and transcribes meetings, then lets you search and analyze them with AI.",
+                features: ["Auto join calls", "AskFred AI search", "CRM sync"],
+                link: "https://fireflies.ai",
+                deploy: null
+            },
+            {
+                name: "Reclaim.ai",
+                category: "productivity",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "📅",
+                desc: "AI calendar that auto-schedules tasks, habits, and breaks around your meetings.",
+                features: ["Auto-scheduling", "Habit defense", "Google Calendar sync"],
+                link: "https://reclaim.ai",
+                deploy: null
+            },
+
+            // VIDEO
+            {
+                name: "Runway",
+                category: "video",
+                badge: "freemium",
+                badgeText: "Free Credits",
+                icon: "🎬",
+                desc: "AI video generation and editing suite used by filmmakers. Text/image to video.",
+                features: ["Gen-4 video model", "Motion brush", "Green screen AI"],
+                link: "https://runwayml.com",
+                deploy: null
+            },
+            {
+                name: "Pika",
+                category: "video",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🐹",
+                desc: "Creative AI video generator with effects, scene transitions, and lip sync.",
+                features: ["Pikaffects", "Text-to-video", "Lip sync"],
+                link: "https://pika.art",
+                deploy: null
+            },
+            {
+                name: "Luma Dream Machine",
+                category: "video",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "💤",
+                desc: "Fast, high-quality video generation from text and images with natural motion.",
+                features: ["Fast generation", "Image-to-video", "Camera controls"],
+                link: "https://lumalabs.ai/dream-machine",
+                deploy: null
+            },
+            {
+                name: "HeyGen",
+                category: "video",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🧑‍💼",
+                desc: "AI avatar videos with realistic talking heads, translations, and voice cloning.",
+                features: ["Avatars", "Video translation", "Voice cloning"],
+                link: "https://heygen.com",
+                deploy: null
+            },
+
+            // VOICE & AUDIO
+            {
+                name: "ElevenLabs",
+                category: "voice",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🗣️",
+                desc: "Industry-leading AI voice generation, cloning, and text-to-speech in 70+ languages.",
+                features: ["Voice cloning", "70+ languages", "Dubbing"],
+                link: "https://elevenlabs.io",
+                deploy: null
+            },
+            {
+                name: "Suno",
+                category: "voice",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🎵",
+                desc: "Generate full songs with vocals and instrumentation from a text prompt.",
+                features: ["Full songs", "Custom lyrics", "Stems download"],
+                link: "https://suno.com",
+                deploy: null
+            },
+            {
+                name: "OpenAI Whisper",
+                category: "voice",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "👂",
+                desc: "Open-source speech-to-text model, highly accurate across 90+ languages.",
+                features: ["90+ languages", "Self-hostable", "Transcription & translation"],
+                link: "https://github.com/openai/whisper",
+                deploy: null
+            },
+
+            // DATA
+            {
+                name: "Julius AI",
+                category: "data",
+                badge: "freemium",
+                badgeText: "Free Messages",
+                icon: "📊",
+                desc: "Chat with your data: upload spreadsheets and get analysis, charts, and forecasts.",
+                features: ["Data chat", "Auto charts", "Forecasting"],
+                link: "https://julius.ai",
+                deploy: null
+            },
+            {
+                name: "Rows",
+                category: "data",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "📈",
+                desc: "Spreadsheet with AI built in — enrichment, analysis, and live data integrations.",
+                features: ["AI enrichment", "Live integrations", "Shareable reports"],
+                link: "https://rows.com",
+                deploy: null
+            },
+
+            // FRAMEWORKS (additional)
+            {
+                name: "LlamaIndex",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🦙",
+                desc: "Data framework for building LLM apps with deep RAG and agent tooling.",
+                features: ["RAG pipelines", "100+ data connectors", "Agent workflows"],
+                link: "https://llamaindex.ai",
+                deploy: null
+            },
+            {
+                name: "Microsoft Agent Framework",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🪟",
+                desc: "Successor to AutoGen and Semantic Kernel for building enterprise multi-agent systems.",
+                features: ["Multi-agent orchestration", "Async actors", "Azure integration"],
+                link: "https://github.com/microsoft/agent-framework",
+                deploy: null
+            },
+            {
+                name: "smolagents",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🐣",
+                desc: "Hugging Face's minimalist agent framework — agents in ~1000 lines of code.",
+                features: ["Code agents", "Tool calling", "Hugging Face Hub tools"],
+                link: "https://github.com/huggingface/smolagents",
+                deploy: null
+            },
+            {
+                name: "Letta (MemGPT)",
+                category: "framework",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🧠",
+                desc: "Framework for stateful agents with self-editing long-term memory.",
+                features: ["Agent memory", "Self-editing", "Local or cloud"],
+                link: "https://letta.com",
+                deploy: null
+            },
+
+            // DEPLOYMENT (additional)
+            {
+                name: "Ollama",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🦙",
+                desc: "Run Llama, DeepSeek, and other open models locally with a simple CLI and API.",
+                features: ["Local inference", "Model library", "OpenAI-compatible API"],
+                link: "https://ollama.com",
+                deploy: null
+            },
+            {
+                name: "LiteLLM",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🪶",
+                desc: "One unified API to call 100+ LLM providers with load balancing and fallbacks.",
+                features: ["Unified API", "Router/fallbacks", "Spend tracking"],
+                link: "https://litellm.ai",
+                deploy: null
+            },
+            {
+                name: "BentoML",
+                category: "deployment",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🍱",
+                desc: "Build and serve AI models in production with Docker-style packaging.",
+                features: ["Model serving", "Batching", "Any framework"],
+                link: "https://bentoml.com",
+                deploy: null
+            },
+
+            // NO-CODE (additional)
+            {
+                name: "Relevance AI",
+                category: "nocode",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "💼",
+                desc: "Build an AI workforce of specialized agents for sales, research, and ops tasks.",
+                features: ["Agent workforce", "Tool builder", "100+ integrations"],
+                link: "https://relevanceai.com",
+                deploy: null
+            },
+            {
+                name: "Voiceflow",
+                category: "nocode",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🗨️",
+                desc: "Design, build, and launch AI agents for chat and voice without code.",
+                features: ["Visual builder", "Knowledge base", "Multi-channel"],
+                link: "https://voiceflow.com",
+                deploy: null
+            },
+            {
+                name: "Zapier Agents",
+                category: "nocode",
+                badge: "freemium",
+                badgeText: "Free Tier",
+                icon: "🔗",
+                desc: "AI agents connected to 7,000+ apps that can take actions in your stack.",
+                features: ["7,000+ apps", "Chatbots", "Automated actions"],
+                link: "https://zapier.com/agents",
+                deploy: null
+            },
+
+            // BROWSER AGENTS (additional)
+            {
+                name: "Skyvern",
+                category: "browser",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🌌",
+                desc: "Browser automation using computer vision — no fragile selectors or DOM parsing.",
+                features: ["Vision-based", "Form filling", "Self-hostable"],
+                link: "https://skyvern.com",
+                deploy: null
+            },
+            {
+                name: "Open Interpreter",
+                category: "browser",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "💻",
+                desc: "Natural-language control of your computer: code, files, browser, and OS tasks.",
+                features: ["OS control", "Local execution", "Code interpreter"],
+                link: "https://openinterpreter.com",
+                deploy: null
+            },
+            {
+                name: "LaVague",
+                category: "browser",
+                badge: "oss",
+                badgeText: "Open Source",
+                icon: "🌊",
+                desc: "Open-source web agent framework that converts goals into Selenium/Playwright actions.",
+                features: ["Selenium/Playwright", "Goal-driven", "Extensible"],
+                link: "https://lavague.ai",
                 deploy: null
             }
         ];
